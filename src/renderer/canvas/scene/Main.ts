@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { createDolphineMesh } from '../objects/DolphinLoader';
+import { Miku } from '../objects/MikuLoader';
 import { EventEmitter } from 'events';
 
 // TODO EventEmitterをタイプセーフにする
@@ -12,21 +12,17 @@ export class BaseScene extends EventEmitter {
   constructor() {
     super();
     this.emit('loadstart', this.scene);
-    const light = new THREE.AmbientLight(0xFFFFFF, 3.0);
+    const light = new THREE.AmbientLight(0xFFFFFF, 1.5);
     this.scene.add(light);
-    try {
-      createDolphineMesh()
-        .then((dolphineObj) => {
-          this.scene.add(dolphineObj);
-          dolphineObj.position.x = 250;
-          dolphineObj.position.y = -150;
-          dolphineObj.rotation.x = DEG * -70;
-          dolphineObj.rotation.z = DEG * -50;
-          this.emit('loadeddata', this.scene);
-        });
-    } catch (err) {
-      throw err;
-    }
+    const dolphine = new Miku();
+    dolphine.on('loaded', (object: THREE.Object3D) => {
+        this.scene.add(object);
+        // object.position.x = 250;
+        // object.position.y = -150;
+        // object.rotation.x = DEG * -70;
+        // object.rotation.z = DEG * -50;
+        this.emit('loadeddata', this.scene);
+    });
   }
 }
 export default new BaseScene();

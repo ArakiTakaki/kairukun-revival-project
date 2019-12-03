@@ -63,7 +63,7 @@ const renderer = {
         ],
       },
       {
-        test: /\.(fpc|mps|mpb|cxc|cxs|cxb|tga|glsl|vs|fs|jpg|png|gif|obj|mtl)$/,
+        test: /\.(fpc|mps|mpb|cxc|cxs|cxb|tga|glsl|vs|fs|jpg|png|gif|obj|mtl|bmp)$/,
         use: [ 
           { 
             loader: 'file-loader',

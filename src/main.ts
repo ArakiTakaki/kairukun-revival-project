@@ -20,7 +20,7 @@ app.on('ready',function(){
     height: height,
     show: true,
     frame: false,
-    transparent: true,
+    // transparent: true,
     resizable: false,
   });
 
